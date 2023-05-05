@@ -1,0 +1,48 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #2eae87;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-logo {
+  max-width: 100%;
+  max-height: 10vh;
+
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.left-Menu {
+  width: 25vw;
+  height: 70vh;
+  align-items: flex-start;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #221435;
+}
+
+.body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+  color: #333c4e;
+  background-color: #212c39;
+}
