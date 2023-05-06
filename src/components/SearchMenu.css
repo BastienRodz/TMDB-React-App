@@ -1,27 +1,95 @@
 .search-menu {
-  width: 22vw;
-  align-items: flex-start;
-  padding: 20px;
+  width: 100%;
+  height: 99%;
+  padding: 1em;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .search-input {
   width: 100%;
-  padding: 10px;
   border: none;
   border-radius: 5px;
   outline: none;
   background: rgba(255, 255, 255, 0.8);
+  height: 2.2em;
+  text-indent: 1em;
 }
 
 .movie-list {
-  margin-top: 20px;
-  max-height: 300px;
+  margin-top: 1em;
+  height: 48em;
   overflow-y: scroll;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.movie-list-bottom-blur {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 1em;
+  transform: translateX(-50%);
+  width: 11em;
+  height: 5em;
+  left: 50%;
+  border-top-left-radius: 30rem;
+  border-top-right-radius: 30rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+
+.movie-list-bottom-blur .down-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  margin-top: 1em;
+  width: 2em;
+  height: 2em;
+  border: solid #ffffff;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 0.2em;
+}
+
+.movie-list-top-blur {
+  position: absolute;
+  top: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 11em;
+  height: 5em;
+  border-bottom-left-radius: 30rem;
+  border-bottom-right-radius: 30rem;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+
+.movie-list-top-blur .up-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 1em;
+  transform: translateX(-50%) rotate(-135deg);
+  width: 2em;
+  height: 2em;
+  border: solid #ffffff;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 0.2em;
+}
+
+.movie-list::-webkit-scrollbar {
+  display: none;
 }
 
 .movie-item {
@@ -33,6 +101,57 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.loader {
-  height: 40px;
+.movie-item .movie-info {
+  flex: 1;
+}
+
+.movie-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.movie-item img {
+  display: flex;
+  width: 92px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+/* Now we'll some items inside the movie-item class */
+/* First, the movie-title class */
+.movie-item .movie-info {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: justify;
+}
+
+.movie-item .movie-info h3 {
+  width: 100%;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: #ffffff;
+}
+
+.movie-item .movie-info p {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+}
+
+.movie-item .movie-info .movie-rating {
+  align-items: center;
+}
+
+.movie-item .movie-info .rating-image {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3em;
+  margin-left: 0.3em;
+}
+
+.movie-item .movie-info .movie-summary {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5em;
 }
