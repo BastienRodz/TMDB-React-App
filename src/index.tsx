@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ConfigProvider from './context/ConfigApiContext';
+import MovieProvider from './context/MovieContext';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider>
-      <App />
+      <MovieProvider>
+        <App />
+      </MovieProvider>
     </ConfigProvider>
   </React.StrictMode>
 );

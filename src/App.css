@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .App-header {
@@ -34,4 +35,12 @@
   overflow: hidden;
   box-sizing: border-box;
   background-color: #221435;
+}
+
+.movie-details {
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  max-width: 70%;
 }
