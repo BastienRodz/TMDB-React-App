@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
-import useDebounce from '../../hooks/useDebounce';
-import './SearchMenu.css'; // Import the styles
+import './SearchMenu.css';
 import { Movie } from '../../types.d';
-import { useConfig } from '../../context/ConfigApiContext';
+import useDebounce from '../../hooks/useDebounce';
+import MoviePoster from '../MoviePoster/MoviePoster';
 import { useMovie } from '../../context/MovieContext';
 import { ReactComponent as TomatoSvg } from '../../assets/food-tomato.svg';
 
@@ -24,8 +24,6 @@ function SearchMenu() {
   const movieListRef = useRef<HTMLDivElement | null>(null);
   const [isTopBlurVisible, setIsTopBlurVisible] = useState(false);
   const { setSelectedMovie } = useMovie();
-
-  const config = useConfig(); // Use useConfig hook
 
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -62,8 +60,6 @@ function SearchMenu() {
   function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
     setSearchTerm(e.target.value);
   }
-
-  const images = config?.images; // Use config
 
   const movieDate = (movieItem: Movie) => {
     const date = new Date(movieItem.release_date).getFullYear();
@@ -138,17 +134,6 @@ function SearchMenu() {
     return overview;
   };
 
-  const getImageUrl = (posterPath: string) => {
-    if (
-      images.secure_base_url &&
-      images.logo_sizes.includes('w92') &&
-      posterPath
-    ) {
-      return `${images.secure_base_url}w92${posterPath}`;
-    }
-    return 'http://via.placeholder.com/92';
-  };
-
   return (
     <div className="search-menu">
       <input
@@ -177,11 +162,11 @@ function SearchMenu() {
             onClick={() => setSelectedMovie(movie)}
           >
             <div className="movie-item-image">
-              <img src={getImageUrl(movie.poster_path)} alt={movie.title} />
+              <img src={MoviePoster(movie.poster_path, 92)} alt={movie.title} />
             </div>
             <div className="movie-info">
               <h3>{movie.title}</h3>
-              <div className="movie-details">
+              <div className="movie-others">
                 {movieDate(movie)}
                 {movieRating(movie)}
                 {movieClassification(movie)}

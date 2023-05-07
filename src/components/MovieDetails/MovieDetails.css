@@ -1,0 +1,31 @@
+.top-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 74vw;
+  height: 40vh;
+  margin-top: 5em;
+  overflow: hidden;
+}
+
+.top-container .movie-title {
+  display: flex;
+  width: 50%;
+  margin-left: 10em;
+  margin-top: 10em;
+  height: 40vh;
+}
+
+.top-container .movie-poster {
+  display: flex;
+  height: 40vh;
+  width: 50%;
+}
+
+.down-container {
+  display: flex;;
+  padding: 10em;
+  text-align: justify;
+}
