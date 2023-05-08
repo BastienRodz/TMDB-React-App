@@ -1,5 +1,3 @@
-// In this file we'll create the types for our application.
-
 export interface Movie {
   id: number;
   original_language: string;

@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ConfigProvider from './context/ConfigApiContext';
 import MovieProvider from './context/MovieContext';
+import LanguageProvider from './context/LanguageContext';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider>
       <MovieProvider>
-        <App />
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
       </MovieProvider>
     </ConfigProvider>
   </React.StrictMode>

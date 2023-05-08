@@ -1,10 +1,17 @@
-import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+  ChangeEvent,
+} from 'react';
 import './SearchMenu.css';
 import { Movie } from '../../types.d';
 import useDebounce from '../../hooks/useDebounce';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import { useMovie } from '../../context/MovieContext';
 import { ReactComponent as TomatoSvg } from '../../assets/food-tomato.svg';
+import { LanguageContext } from '../../context/LanguageContext';
 
 interface SearchResult {
   page: number;
@@ -13,9 +20,11 @@ interface SearchResult {
   results: Movie[];
 }
 
-const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+interface SearchMenuProps {
+  onMovieClick: () => void;
+}
 
-function SearchMenu() {
+function SearchMenu({ onMovieClick }: SearchMenuProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const page = 1;
@@ -24,12 +33,14 @@ function SearchMenu() {
   const movieListRef = useRef<HTMLDivElement | null>(null);
   const [isTopBlurVisible, setIsTopBlurVisible] = useState(false);
   const { setSelectedMovie } = useMovie();
+  const { language } = useContext(LanguageContext);
+  const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
 
   useEffect(() => {
     if (debouncedSearchTerm) {
       const fetchMovies = async () => {
         const response = await fetch(
-          `${BASE_URL}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR&query=${debouncedSearchTerm}&page=${page}&include_adult=true`
+          `${BASE_URL}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&query=${debouncedSearchTerm}&page=${page}&include_adult=true`
         );
         const data: SearchResult = await response.json();
         setSearchResults(data.results);
@@ -159,7 +170,10 @@ function SearchMenu() {
             type="button"
             key={movie.id}
             className="movie-item"
-            onClick={() => setSelectedMovie(movie)}
+            onClick={() => {
+              setSelectedMovie(movie);
+              onMovieClick();
+            }}
           >
             <div className="movie-item-image">
               <img src={MoviePoster(movie.poster_path, 92)} alt={movie.title} />

@@ -1,43 +1,100 @@
 .App {
   display: flex;
   flex-direction: row;
+  background-color: #f9f9fb;
 }
 
-.App-header {
-  background-color: #2eae87;
-  height: 11vh;
-  width: 25vw;
-  border-radius: 10px;
+.right-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #f9f9fb;
+  margin: 0;
+  padding: 0;
+  width: 65%;
+  overflow: hidden;
 }
 
-.App-logo {
+.left-container {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100vh;
+  background-color: #e1e4f4;
+}
+
+.left-header {
+  background-color: #e1e4f4;
+  height: 11vh;
+  display: flex;
+  justify-content: left;
+  border-right: 5px inset #6c68c1;
+  box-sizing: border-box;
+}
+
+.left-header .left-logo {
   max-width: 80%;
   max-height: 10vh;
-  padding-left: 1vw;
+  padding-left: 3vw;
+  padding-top: 1vh;
 }
 
-.App-link {
-  color: #61dafb;
+.left-header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 100;
+  margin: 0;
+  padding: 20px;
+  letter-spacing: 0.2em;
+  font-size: 1.3rem;
 }
 
-.left-Menu {
-  width: 25vw;
-  height: 87vh;
+.left-search {
+  height: 89vh;
   padding: 1em;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-right: 5px inset #6c68c1;
   overflow: hidden;
   box-sizing: border-box;
-  background-color: #221435;
+  background-color: #e1e4f4;
 }
 
-.movie-details {
-  width: 75vw;
-  height: 100vh;
+/* Add the following CSS classes */
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.back-button {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .left-container {
+    width: 100%;
+    position: absolute;
+  }
+
+  .right-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .back-button {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #e1e4f4;
+    border: none;
+    padding: 1em;
+    font-size: 1.5em;
+    color: #6c68c1;
+  }
 }

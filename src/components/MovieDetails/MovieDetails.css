@@ -4,28 +4,33 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  width: 74vw;
-  height: 40vh;
-  margin-top: 5em;
   overflow: hidden;
+  background-color: #f9f1ea;
 }
 
 .top-container .movie-title {
-  display: flex;
   width: 50%;
   margin-left: 10em;
   margin-top: 10em;
-  height: 40vh;
+  color: #222222;
 }
 
 .top-container .movie-poster {
-  display: flex;
-  height: 40vh;
   width: 50%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.top-container .movie-poster img {
+  height: 100%;
+  border-radius: 3em;
+  max-height: 35vh;
 }
 
 .down-container {
-  display: flex;;
+  display: flex;
   padding: 10em;
   text-align: justify;
+  background-color: #f9f9fb;
+  color: #313130;
 }

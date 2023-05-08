@@ -19,6 +19,7 @@
 	"version": "detect"
   },
   "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+  "import/core-modules": ["react-draggable", "react-resizable"],
   "import/resolver": {
 	"node": {
 	  "extensions": [".js", ".jsx", ".ts", ".tsx"]

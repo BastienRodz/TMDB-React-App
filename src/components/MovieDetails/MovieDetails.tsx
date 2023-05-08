@@ -3,10 +3,12 @@ import './MovieDetails.css';
 import { detailedMovie } from '../../types.d';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import { MovieContext } from '../../context/MovieContext';
+import { LanguageContext } from '../../context/LanguageContext';
 
 function MovieDetails() {
   const { selectedMovie } = React.useContext(MovieContext);
   const [movieDetailed, setMovieDetailed] = React.useState<detailedMovie>();
+  const { language } = React.useContext(LanguageContext);
 
   const movieOverview = (movieItem: detailedMovie | undefined) => {
     if (!movieItem) return null;
@@ -19,13 +21,13 @@ function MovieDetails() {
     const fetchMovieDetails = async () => {
       if (!selectedMovie) return;
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${selectedMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
+        `https://api.themoviedb.org/3/movie/${selectedMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`
       );
       const data: detailedMovie = await response.json();
       setMovieDetailed(data);
     };
     fetchMovieDetails();
-  }, [selectedMovie]);
+  }, [selectedMovie, language]);
 
   if (!selectedMovie) {
     return null;
@@ -38,7 +40,6 @@ function MovieDetails() {
           <img
             src={MoviePoster(movieDetailed?.poster_path, 500)}
             alt={movieDetailed?.title}
-            style={{ height: '25em', borderRadius: '3em' }}
           />
         </div>
       </div>
