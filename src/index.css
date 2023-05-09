@@ -1,0 +1,9 @@
+* {
+	box-sizing: border-box;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased
+}
+
+*, html {
+	font-family: Circular Std,arial,sans-serif
+}

@@ -13,12 +13,17 @@ export interface Movie {
   genres: number;
   adult: boolean;
 }
+
+export interface Genre {
+  id: number;
+  name: string;
+}
 export interface detailedMovie {
   adult: boolean;
   backdrop_path: string | null;
   belongs_to_collection: null | object;
   budget: number;
-  genres: Array<object>;
+  genres: Array<Genre>;
   homepage: string | null;
   id: number;
   idmb_id: string | null;

@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import ConfigProvider from './context/ConfigApiContext';
 import MovieProvider from './context/MovieContext';
 import LanguageProvider from './context/LanguageContext';
+import './index.css';
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

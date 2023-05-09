@@ -1,21 +1,32 @@
+.language-selection-container {
+	overflow-x: auto;
+}
+
 .language-selection {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	margin-right: 1em;
+  width: 100%;
+}
+
+@media (max-width: 150px) {
+	.language-selection {
+    flex-direction: column;;
+	}
 }
 
 .language-selection-flag {
 	width: 1.5em;
-	height: 1.5em;
-	margin: 0.2em 0.2em;
-	cursor: pointer;
-	border-radius: 50%;
-	border: 1px solid #ccc;
-	transition: all 0.3s ease-in-out;
-	text-align: center;
-	font-size: 1.6em;
+    height: 1.5em;
+    margin: 3px 3px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    font-size: 1.1em;
 }
 
 .language-selection-flag:hover {

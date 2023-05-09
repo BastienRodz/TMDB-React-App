@@ -2,35 +2,107 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: row;
   overflow: hidden;
-  background-color: #f9f1ea;
+  height: 35%;
+  background-color: #f9f1ea8b;
 }
 
-.top-container .movie-title {
-  width: 50%;
-  margin-left: 10em;
-  margin-top: 10em;
+.top-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
+  overflow: visible;
+}
+
+.top-container .top-box h1 {
   color: #222222;
+  display: block;
+  font-weight: bold;
+}
+
+.top-container .top-box .movie-others {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
 }
 
 .top-container .movie-poster {
-  width: 50%;
+  width: 40%;
   margin-top: 2em;
   margin-bottom: 2em;
+  display: flex;  
+  justify-content: center;
 }
 
 .top-container .movie-poster img {
-  height: 100%;
+  width: 12em;
   border-radius: 3em;
-  max-height: 35vh;
 }
 
 .down-container {
   display: flex;
-  padding: 10em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65%;
+  padding: 6em;
   text-align: justify;
-  background-color: #f9f9fb;
+  background-color: rgba(255, 255, 255, 0.704);
   color: #313130;
+}
+
+.down-container .down-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 75%;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.down-container .down-box .movie-overview {
+  height: 100%;
+  font-size: 1.1em;
+  margin: 1em;
+  overflow: auto;
+}
+
+@media (max-width: 1000px){
+
+  .top-container {
+    height: 25%;
+    
+  }
+
+  .down-container {
+    height: 75%;
+    padding: 3em;
+  }
+
+  .down-container .down-box{
+    width: 100%;
+  }
+}
+
+.down-container .down-box .movie-overview {
+  height: 100%;
+  font-size: 1.1em;
+  margin: 0;
+  padding: 0;
+  text-align: justify;
 }

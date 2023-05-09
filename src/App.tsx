@@ -8,16 +8,11 @@ import { MovieContext } from './context/MovieContext';
 
 function App() {
   const { selectedMovie, setSelectedMovie } = useContext(MovieContext);
-  const [showDetails, setShowDetails] = useState(false);
+  // const [showDetails, setShowDetails] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleBackButtonClick = () => {
-    setShowDetails(false);
     setSelectedMovie(null);
-  };
-
-  const handleMovieClick = () => {
-    setShowDetails(true);
   };
 
   useEffect(() => {
@@ -34,30 +29,24 @@ function App() {
 
   return (
     <div className="App">
-      <div
-        className={`left-container ${
-          showDetails && windowWidth <= 800 ? 'hidden' : ''
-        }`}
-      >
+      <div className={`left-container ${windowWidth <= 800 ? 'hidden' : ''}`}>
         <div className="left-header">
           <img className="left-logo" src={logo} alt="logo" />
           <h1>Fresh Tomatoes</h1>
           <LanguageSelection />
         </div>
         <div className="left-search">
-          <SearchMenu onMovieClick={handleMovieClick} />
+          <SearchMenu />
         </div>
       </div>
       {selectedMovie && (
-        <div
-          className={`right-container ${showDetails ? 'visible' : 'hidden'}`}
-        >
+        <div className="right-container">
           <button
             type="button"
             className="back-button"
             onClick={handleBackButtonClick}
           >
-            &#8592; Back
+            &#8592;
           </button>
           <MovieDetails />
         </div>

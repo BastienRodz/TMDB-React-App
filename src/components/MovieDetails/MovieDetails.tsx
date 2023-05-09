@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import './MovieDetails.css';
-import { detailedMovie } from '../../types.d';
+import { detailedMovie, Genre } from '../../types.d';
 import MoviePoster from '../MoviePoster/MoviePoster';
+import MovieScores from '../MovieScores/MovieScores';
+import MovieTrailer from '../MovieTrailer/MovieTrailer';
 import { MovieContext } from '../../context/MovieContext';
 import { LanguageContext } from '../../context/LanguageContext';
 
@@ -32,10 +34,34 @@ function MovieDetails() {
   if (!selectedMovie) {
     return null;
   }
+  const bg_img = MoviePoster(movieDetailed?.backdrop_path, 300);
+
+  const getRuntime = (runtime: number | null | undefined) => {
+    if (!runtime) return null;
+    const hours = Math.floor(runtime / 60);
+    const minutes = runtime % 60;
+    return `${hours}h ${minutes}min`;
+  };
+
+  const getGenres = (genres: Genre[] | undefined) => {
+    if (!genres) return language === 'en-US' ? 'Unknown' : 'Inconnu';
+    return genres.map((genre) => genre.name).join(', ');
+  };
+
   return (
-    <>
+    <div
+      style={{
+        background: `url(${bg_img}) center center / cover no-repeat`,
+        height: '100%',
+      }}
+    >
       <div className="top-container">
-        <div className="movie-title">{movieDetailed?.title}</div>
+        <div className="top-box">
+          <h1>{movieDetailed?.title}</h1>
+          <span className="movie-others">
+            {MovieScores({ movie: selectedMovie })}
+          </span>
+        </div>
         <div className="movie-poster">
           <img
             src={MoviePoster(movieDetailed?.poster_path, 500)}
@@ -44,9 +70,17 @@ function MovieDetails() {
         </div>
       </div>
       <div className="down-container">
-        <div className="movie-overview">{movieOverview(movieDetailed)}</div>
+        <div className="down-box">
+          <span>{getRuntime(movieDetailed?.runtime)}</span>
+          <span>Genre(s): {getGenres(movieDetailed?.genres)}</span>
+          <span>Status: {movieDetailed?.status}</span>
+          <span>{MovieTrailer(movieDetailed, language)}</span>
+        </div>
+        <div className="down-box">
+          <div className="movie-overview">{movieOverview(movieDetailed)}</div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
