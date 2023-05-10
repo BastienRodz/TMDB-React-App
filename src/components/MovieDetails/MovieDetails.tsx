@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './MovieDetails.css';
 import { detailedMovie, Genre } from '../../types.d';
-import MoviePoster from '../MoviePoster/MoviePoster';
+import MoviePosterURL from '../MoviePoster/MoviePosterURL';
 import MovieScores from '../MovieScores/MovieScores';
 import MovieTrailer from '../MovieTrailer/MovieTrailer';
+import MovieOverview from '../MovieOverview/MovieOverview';
+import DefaultPage from '../DefaultPage/DefaultPage';
 import { MovieContext } from '../../context/MovieContext';
 import { LanguageContext } from '../../context/LanguageContext';
+import i18n from '../../utils/i18n';
 
+// This component displays the details of a movie on the right side of the website.
 function MovieDetails() {
-  const { selectedMovie } = React.useContext(MovieContext);
-  const [movieDetailed, setMovieDetailed] = React.useState<detailedMovie>();
-  const { language } = React.useContext(LanguageContext);
+  // If no movie are selected, we display the default page.
+  const { selectedMovie } = useContext(MovieContext);
+  if (!selectedMovie) {
+    return <DefaultPage />;
+  }
 
-  const movieOverview = (movieItem: detailedMovie | undefined) => {
-    if (!movieItem) return null;
-    const { overview } = movieItem;
-    if (!overview) return 'No overview available';
-    return overview;
-  };
+  const [movieDetailed, setMovieDetailed] = useState<detailedMovie>();
+  const { language } = useContext(LanguageContext);
+  const { t } = useTranslation();
 
+  // Fetch the movie details, using the selected language and the selected movie ID.
+  // If the selected movie is undefined, we don't fetch anything.
+  // If language or selectedMovie change, we fetch again.
   useEffect(() => {
     const fetchMovieDetails = async () => {
       if (!selectedMovie) return;
@@ -31,11 +38,12 @@ function MovieDetails() {
     fetchMovieDetails();
   }, [selectedMovie, language]);
 
-  if (!selectedMovie) {
-    return null;
-  }
-  const bg_img = MoviePoster(movieDetailed?.backdrop_path, 300);
+  // If the user changes the language, we change the language of the text displayed through i18n.
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
 
+  // The next functions are used to get and display the details from the fetched movie data structure.
   const getRuntime = (runtime: number | null | undefined) => {
     if (!runtime) return null;
     const hours = Math.floor(runtime / 60);
@@ -44,17 +52,18 @@ function MovieDetails() {
   };
 
   const getGenres = (genres: Genre[] | undefined) => {
-    if (!genres) return language === 'en-US' ? 'Unknown' : 'Inconnu';
+    if (!genres) return t('status.unknown');
+    if (genres.length === 0) return t('status.unknown');
     return genres.map((genre) => genre.name).join(', ');
   };
 
+  const getStatus = (status: string | undefined) => {
+    if (!status) return t('status.unknown');
+    return t(`${status}`);
+  };
+
   return (
-    <div
-      style={{
-        background: `url(${bg_img}) center center / cover no-repeat`,
-        height: '100%',
-      }}
-    >
+    <>
       <div className="top-container">
         <div className="top-box">
           <h1>{movieDetailed?.title}</h1>
@@ -64,23 +73,38 @@ function MovieDetails() {
         </div>
         <div className="movie-poster">
           <img
-            src={MoviePoster(movieDetailed?.poster_path, 500)}
+            src={MoviePosterURL({
+              poster_path: movieDetailed?.poster_path,
+              size: 500,
+            })}
             alt={movieDetailed?.title}
           />
         </div>
       </div>
       <div className="down-container">
-        <div className="down-box">
-          <span>{getRuntime(movieDetailed?.runtime)}</span>
-          <span>Genre(s): {getGenres(movieDetailed?.genres)}</span>
-          <span>Status: {movieDetailed?.status}</span>
-          <span>{MovieTrailer(movieDetailed, language)}</span>
+        <div className="up-box">
+          <ul>
+            <li>{getRuntime(movieDetailed?.runtime)}</li>
+            <li>
+              <b>Genre(s):</b> {getGenres(movieDetailed?.genres)}
+            </li>
+            <li>
+              <b>Status:</b> {getStatus(movieDetailed?.status)}
+            </li>
+          </ul>
+          <MovieTrailer movie={movieDetailed} />
         </div>
         <div className="down-box">
-          <div className="movie-overview">{movieOverview(movieDetailed)}</div>
+          <div className="movie-overview">
+            <MovieOverview
+              movie={movieDetailed}
+              language={language}
+              size={2000}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

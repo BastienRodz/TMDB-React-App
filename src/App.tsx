@@ -6,9 +6,9 @@ import SearchMenu from './components/SearchMenu/SearchMenu';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import { MovieContext } from './context/MovieContext';
 
+// The App component serves as the main container for the entire application
 function App() {
   const { selectedMovie, setSelectedMovie } = useContext(MovieContext);
-  // const [showDetails, setShowDetails] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleBackButtonClick = () => {
@@ -28,8 +28,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className={`left-container ${windowWidth <= 800 ? 'hidden' : ''}`}>
+    <div className="App animated-background">
+      <div className={`left-container ${windowWidth <= 1000 ? 'hidden' : ''}`}>
         <div className="left-header">
           <img className="left-logo" src={logo} alt="logo" />
           <h1>Fresh Tomatoes</h1>
@@ -39,15 +39,17 @@ function App() {
           <SearchMenu />
         </div>
       </div>
-      {selectedMovie && (
-        <div className="right-container">
-          <button
-            type="button"
-            className="back-button"
-            onClick={handleBackButtonClick}
-          >
-            &#8592;
-          </button>
+      {(windowWidth > 1000 || selectedMovie) && (
+        <div className="right-container animated-background">
+          {selectedMovie && (
+            <button
+              type="button"
+              className="back-button"
+              onClick={handleBackButtonClick}
+            >
+              &larr;
+            </button>
+          )}
           <MovieDetails />
         </div>
       )}

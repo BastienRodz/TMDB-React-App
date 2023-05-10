@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const useDebounce = (value: any, delay: number): any => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+// This hook is used to debounce the search input.
+// It is used in the SearchMenu component.
+const useDebounce = <T>(value: T, delay: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
   useEffect(() => {
     const handler = setTimeout(() => {

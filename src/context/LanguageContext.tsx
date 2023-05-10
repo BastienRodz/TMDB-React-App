@@ -1,5 +1,7 @@
 import React, { createContext, useState, useContext, useMemo } from 'react';
 
+// The LanguageContext is used to get the language from the user.
+// It is used to get the right language for the movie title, overview, trailer, etc.
 interface LanguageContextState {
   language: string;
   setLanguage: (language: string) => void;

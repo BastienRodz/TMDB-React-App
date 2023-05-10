@@ -1,36 +1,32 @@
 import { Movie } from '../../types.d';
 import { ReactComponent as TomatoSvg } from '../../assets/food-tomato.svg';
 
-function MovieScores({ movie }: { movie: Movie }): JSX.Element {
+interface MovieScoresProps {
+  movie: Movie;
+}
+
+// This component is used to display the movie release date, rating and adult flag when needed.
+function MovieScores({ movie }: MovieScoresProps) {
   const movieDate = (movieItem: Movie) => {
     const date = new Date(movieItem.release_date).getFullYear();
     const str = `${date.toString()} `;
     return str;
   };
 
+  // This function is used to modify the tomato color depending on the vote average.
   const tomatoColor = (voteAverage: number) => {
-    let hueRotateValue = 0;
-    if (voteAverage >= 9) {
-      hueRotateValue = 0;
-    } else if (voteAverage >= 8) {
-      hueRotateValue = 15;
-    } else if (voteAverage >= 7) {
-      hueRotateValue = 30;
-    } else if (voteAverage >= 6) {
-      hueRotateValue = 45;
-    } else if (voteAverage >= 5) {
-      hueRotateValue = 60;
-    } else if (voteAverage >= 4) {
-      hueRotateValue = 75;
-    } else if (voteAverage >= 3) {
-      hueRotateValue = 90;
-    } else if (voteAverage >= 2) {
-      hueRotateValue = 105;
-    } else if (voteAverage >= 1) {
-      hueRotateValue = 120;
-    } else {
-      hueRotateValue = 135;
-    }
+    const hueRotateValue = (() => {
+      if (voteAverage >= 9) return 0;
+      if (voteAverage >= 8) return 15;
+      if (voteAverage >= 7) return 30;
+      if (voteAverage >= 6) return 45;
+      if (voteAverage >= 5) return 60;
+      if (voteAverage >= 4) return 75;
+      if (voteAverage >= 3) return 90;
+      if (voteAverage >= 2) return 105;
+      if (voteAverage >= 1) return 120;
+      return 135;
+    })();
     return (
       <TomatoSvg
         style={{
@@ -41,6 +37,8 @@ function MovieScores({ movie }: { movie: Movie }): JSX.Element {
     );
   };
 
+  // This function is used to display the movie rating.
+  // If the movie has less than 20 votes, we don't display the rating because it's not relevant.
   const movieRating = (movieItem: Movie) => {
     const { vote_average, vote_count } = movieItem;
     if (vote_count >= 20) {
@@ -48,7 +46,7 @@ function MovieScores({ movie }: { movie: Movie }): JSX.Element {
       return (
         <>
           <span style={{ marginLeft: '0.5em', marginRight: '0.5em' }}>-</span>
-          {img}
+          <span style={{ minWidth: '1.5em' }}>{img}</span>
           <span>{vote_average.toFixed(1).toString()}</span>
         </>
       );
@@ -56,6 +54,7 @@ function MovieScores({ movie }: { movie: Movie }): JSX.Element {
     return null;
   };
 
+  // This function is used to display the 🔞 flag when the movie is for adults only.
   const movieClassification = (movieItem: Movie) => {
     const { adult } = movieItem;
     if (adult)

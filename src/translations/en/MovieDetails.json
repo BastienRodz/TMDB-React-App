@@ -1,0 +1,15 @@
+{
+    "status.unknown": "Unknown",
+    "status.released": "Released",
+    "status.rumored": "Rumored",
+    "status.post_production": "Post Production",
+    "status.in_production": "In Production",
+    "status.planned": "Planned",
+    "status.canceled": "Canceled",
+    "overview.no_overview": "No overview available.",
+    "search.input": "Search for a movie...",
+    "search.default": "Type a movie title in the search bar above to find movies.",
+    "trailer.unavailable": "No trailer available...",
+    "default.welcome_title": "Welcome to Fresh Tomatoe!",
+    "default.welcome_message": "To get started, search for a movie using the search bar on the left."
+}

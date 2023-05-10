@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_US\n"
+
+msgid "status.unknown"
+msgstr "Unknown"
+
+msgid "status.released"
+msgstr "Released"
+
+msgid "status.rumored"
+msgstr "Rumored"
+
+msgid "status.post_production"
+msgstr "Post Production"
+
+msgid "status.in_production"
+msgstr "In Production"
+
+msgid "status.planned"
+msgstr "Planned"
+
+msgid "status.canceled"
+msgstr "Canceled"
+
+msgid "overview.no_overview"
+msgstr "No overview available."
+
+msgid "search.input"
+msgstr "Search for a movie..."
+
+msgid "search.default"
+msgstr "Type a movie title in the search bar above to find movies."
+
+msgid "trailer.unavailable"
+msgstr "No trailer available..."
+
+msgid "default.welcome_title"
+msgstr "Welcome to Fresh Tomatoe!"
+
+msgid "default.welcome_message"
+msgstr "To get started, search for a movie using the search bar on the left."

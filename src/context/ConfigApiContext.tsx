@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+// The ConfigContext is used to get the configuration from TheMovieDB API.
+// It is used to get the secure base url to display the images.
 interface ConfigContextState {
   images: {
     base_url: string;
@@ -15,6 +17,7 @@ interface ConfigContextState {
 
 const ConfigContext = createContext<ConfigContextState | null>(null);
 
+// This hook is used to get the configuration from TheMovieDB API.
 function useConfig() {
   const config = useContext(ConfigContext);
   if (!config) {

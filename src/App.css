@@ -8,18 +8,20 @@
 .right-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #f9f9fb;
-  width: 75%;
+  width: 70%;
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .left-container {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 30%;
   height: 100vh;
   background-color: #e1e4f4;
   border-right: 5px inset #6c68c1;
@@ -77,12 +79,15 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
+    overflow-y: auto;
   }
 
   .back-button {
     display: block;
     position: fixed;
     top: 50%;
+    left: 0.3em;
+    transform: translateY(-50%);
     background-color: #e1e4f4;
     border: none;
     border-radius: 100%;
@@ -90,6 +95,7 @@ h1 {
     padding: 0.6em;
     font-size: 1.5em;
     color: #6c68c1;
+    z-index: 2;
   }
 
   .left-header {
@@ -102,4 +108,32 @@ h1 {
     font-size: 1.3em;
     padding: 0.7em;
   }
+}
+
+.animated-background {
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-background {
+  background-image: linear-gradient(
+    135deg,
+    #ff9a9e 0%,
+    #fad0c4 25%,
+    #fbc2eb 50%,
+    #a6c1ee 75%,
+    #ff9a9e 100%
+  );
 }

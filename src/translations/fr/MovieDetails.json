@@ -1,0 +1,15 @@
+{
+    "status.unknown": "Inconnu",
+    "status.released": "Sorti",
+    "status.rumored": "Rumeur",
+    "status.post_production": "Post Production",
+    "status.in_production": "En Production",
+    "status.planned": "Planifié",
+    "status.canceled": "Annulé",
+    "overview.no_overview": "Aucun résumé disponible.",
+    "search.input": "Rechercher un film...",
+    "search.default": "Tapez le titre d'un film dans la barre de recherche ci-dessus pour trouver des films.",
+    "trailer.unavailable": "Aucune bande annonce disponible...",
+    "default.welcome_title": "Bienvenue sur Fresh Tomatoe !",
+    "default.welcome_message": "Pour commencer, recherchez un film en utilisant la barre de recherche sur la gauche."
+}

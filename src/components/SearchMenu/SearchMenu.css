@@ -1,6 +1,6 @@
 .search-menu {
   width: 100%;
-  height: 95%;
+  height: 100%;
   padding: 2em;
   background: #6c68c1;
   border-radius: 10px;
@@ -26,13 +26,13 @@
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  height: 93.3%;
+  height: 95%;
 }
 
 .movie-list-bottom-blur {
   position: absolute;
   bottom: 0;
-  margin-bottom: 1.3em;
+  margin-bottom: 5%;
   transform: translateX(-50%);
   width: 11em;
   height: 5em;
@@ -110,7 +110,7 @@
 }
 
 .movie-item .movie-info {
-  flex: 1;
+  font-size: 14px;
 }
 
 .movie-item:hover {

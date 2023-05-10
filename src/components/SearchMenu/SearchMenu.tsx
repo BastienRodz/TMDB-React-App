@@ -5,14 +5,19 @@ import React, {
   useRef,
   ChangeEvent,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import './SearchMenu.css';
 import { Movie } from '../../types.d';
 import useDebounce from '../../hooks/useDebounce';
-import MoviePoster from '../MoviePoster/MoviePoster';
+import MoviePosterURL from '../MoviePoster/MoviePosterURL';
 import MovieScores from '../MovieScores/MovieScores';
+import MovieOverview from '../MovieOverview/MovieOverview';
+import SearchPrompt from '../SearchPrompt/SearchPrompt';
 import { useMovie } from '../../context/MovieContext';
 import { LanguageContext } from '../../context/LanguageContext';
+import i18n from '../../utils/i18n';
 
+// This interface is used to type the data fetched from TheMovieDB API.
 interface SearchResult {
   page: number;
   total_results: number;
@@ -20,18 +25,27 @@ interface SearchResult {
   results: Movie[];
 }
 
+// This component displays the search menu on the left side of the website.
+// It is composed of a search bar and a list of movies.
 function SearchMenu() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
-  const page = 1;
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
-  const [isBottomBlurVisible, setIsBottomBlurVisible] = useState(false);
   const movieListRef = useRef<HTMLDivElement | null>(null);
-  const [isTopBlurVisible, setIsTopBlurVisible] = useState(false);
+  const [isBottomBlurVisible, setIsBottomBlurVisible] =
+    useState<boolean>(false);
+  const [isTopBlurVisible, setIsTopBlurVisible] = useState<boolean>(false);
   const { setSelectedMovie } = useMovie();
-  const { language } = useContext(LanguageContext);
-  const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
 
+  const { language } = useContext(LanguageContext);
+  const { t } = useTranslation();
+
+  const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+  const page = 1;
+
+  // Fetch the movies, using the selected language and the search term.
+  // If the search term is empty, we don't fetch anything.
+  // If language or search term change, we fetch again.
   useEffect(() => {
     if (debouncedSearchTerm) {
       const fetchMovies = async () => {
@@ -47,6 +61,8 @@ function SearchMenu() {
     }
   }, [debouncedSearchTerm, page, language]);
 
+  // This function is called when the user scrolls the movie list.
+  // It checks if the user is at the top or at the bottom of the list to display the blur effect correctly.
   function handleScroll(e: React.UIEvent<HTMLDivElement>): void {
     const target = e.target as HTMLDivElement;
     const isAtBottom =
@@ -56,24 +72,25 @@ function SearchMenu() {
     setIsTopBlurVisible(!isAtTop);
   }
 
+  // This effect is used to scroll the movie list to the top when the search term or the language changes.
   useEffect(() => {
     if (movieListRef.current) {
       handleScroll({
         target: movieListRef.current,
       } as unknown as React.UIEvent<HTMLDivElement>);
     }
-  }, [searchResults]);
+  }, [searchResults, language]);
 
+  // This function is called when the user types in the search bar.
+  // It updates the search term.
   function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
     setSearchTerm(e.target.value);
   }
 
-  const movieOverview = (movieItem: Movie) => {
-    const { overview } = movieItem;
-    if (!overview) return 'No overview available';
-    if (overview.length > 140) return `${overview.substring(0, 140)}...`;
-    return overview;
-  };
+  // If the user changes the language, we change the language of the text displayed through i18n.
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
 
   return (
     <div className="search-menu">
@@ -82,7 +99,8 @@ function SearchMenu() {
         value={searchTerm}
         onChange={handleSearch}
         className="search-input"
-        placeholder="Search for a movie..."
+        placeholder={t('search.input', 'Search for a movie...') as string}
+        aria-label="Search for a movie"
       />
       <div ref={movieListRef} className="movie-list" onScroll={handleScroll}>
         {isTopBlurVisible && (
@@ -95,27 +113,41 @@ function SearchMenu() {
             <i className="down-arrow" />
           </div>
         )}
-        {searchResults.map((movie) => (
-          <button
-            type="button"
-            key={movie.id}
-            className="movie-item"
-            onClick={() => {
-              setSelectedMovie(movie);
-            }}
-          >
-            <div className="movie-item-image">
-              <img src={MoviePoster(movie.poster_path, 92)} alt={movie.title} />
-            </div>
-            <div className="movie-info">
-              <h3>{movie.title}</h3>
-              <span className="movie-others">{MovieScores({ movie })}</span>
-              <p>
-                <span className="movie-info-label">{movieOverview(movie)}</span>{' '}
-              </p>
-            </div>
-          </button>
-        ))}
+        {searchTerm ? (
+          searchResults.map((movie) => {
+            const movieOverview = (
+              <MovieOverview movie={movie} language={language} size={140} />
+            );
+
+            return (
+              <button
+                type="button"
+                key={movie.id}
+                className="movie-item"
+                onClick={() => {
+                  setSelectedMovie(movie);
+                }}
+              >
+                <div className="movie-item-image">
+                  <img
+                    src={MoviePosterURL({
+                      poster_path: movie?.poster_path,
+                      size: 92,
+                    })}
+                    alt={movie?.title}
+                  />
+                </div>
+                <div className="movie-info">
+                  <h3>{movie.title}</h3>
+                  <span className="movie-others">{MovieScores({ movie })}</span>
+                  <span className="movie-info-label">{movieOverview}</span>
+                </div>
+              </button>
+            );
+          })
+        ) : (
+          <SearchPrompt language={language} />
+        )}
       </div>
     </div>
   );
