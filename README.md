@@ -25,15 +25,25 @@ TheMovieDB React App is a web application that allows users to search for movies
 To set up the Fresh Tomatoes application on your local machine, follow these steps:
 
 1. Clone the repository:
+
 ```git clone https://github.com/barodrig/tmdb-react-app.git```
+
 2. Navigate to the project directory:
+
 ```cd tmdb-react-app```
+
 3. Install the required dependencies:
+
 ```npm install```
+
 4. Create a `.env` file in the root of the project directory with the following content (replace `YOUR_API_KEY` with your own API key from The MovieDB):
+
 ```REACT_APP_API_KEY=YOUR_API_KEY```
+
 5. Start the development server:
+
 ```npm start```
+
 The application will be available at `http://localhost:3000/`.
 
 ## Usage
@@ -61,8 +71,11 @@ The application will be available at `http://localhost:3000/`.
 To run tests for the Fresh Tomatoes application, follow these steps:
 
 1. Navigate to the project directory:
+
 ```cd tmdb-react-app```
+
 2. Run the test suite:
+
 ```npm test```
 
 
