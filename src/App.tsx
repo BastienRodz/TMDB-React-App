@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/logo.svg';
-import LanguageSelection from './components/LanguageSelection/LanguageSelection';
+import LocalSelection from './components/LocalSelection/LocalSelection';
 import SearchMenu from './components/SearchMenu/SearchMenu';
 import MovieDetails from './components/MovieDetails/MovieDetails';
-import { MovieContext } from './context/MovieContext';
+import { MovieContext } from './contexts/MovieContext';
 
 // The App component serves as the main container for the entire application
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <div className="left-header">
           <img className="left-logo" src={logo} alt="logo" />
           <h1>Fresh Tomatoes</h1>
-          <LanguageSelection />
+          <LocalSelection />
         </div>
         <div className="left-search">
           <SearchMenu />

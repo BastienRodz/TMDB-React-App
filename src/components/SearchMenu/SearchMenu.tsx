@@ -9,12 +9,12 @@ import { useTranslation } from 'react-i18next';
 import './SearchMenu.css';
 import { Movie } from '../../types.d';
 import useDebounce from '../../hooks/useDebounce';
-import MoviePosterURL from '../MoviePoster/MoviePosterURL';
+import MoviePoster from '../MoviePoster/MoviePoster';
 import MovieScores from '../MovieScores/MovieScores';
 import MovieOverview from '../MovieOverview/MovieOverview';
 import SearchPrompt from '../SearchPrompt/SearchPrompt';
-import { useMovie } from '../../context/MovieContext';
-import { LanguageContext } from '../../context/LanguageContext';
+import { useMovie } from '../../contexts/MovieContext';
+import { LocalContext } from '../../contexts/LocalContext';
 import i18n from '../../utils/i18n';
 
 // This interface is used to type the data fetched from TheMovieDB API.
@@ -37,20 +37,25 @@ function SearchMenu() {
   const [isTopBlurVisible, setIsTopBlurVisible] = useState<boolean>(false);
   const { setSelectedMovie } = useMovie();
 
-  const { language } = useContext(LanguageContext);
-  const { t } = useTranslation();
+  const { local } = useContext(LocalContext);
 
   const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
   const page = 1;
 
-  // Fetch the movies, using the selected language and the search term.
+  // If the user changes the local, we change the language of the text displayed through i18n.
+  useEffect(() => {
+    i18n.changeLanguage(local);
+  }, [local]);
+  const { t } = useTranslation();
+
+  // Fetch the movies, using the selected local and the search term.
   // If the search term is empty, we don't fetch anything.
-  // If language or search term change, we fetch again.
+  // If local or search term change, we fetch again.
   useEffect(() => {
     if (debouncedSearchTerm) {
       const fetchMovies = async () => {
         const response = await fetch(
-          `${BASE_URL}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&query=${debouncedSearchTerm}&page=${page}&include_adult=true`
+          `${BASE_URL}?api_key=${process.env.REACT_APP_API_KEY}&language=${local}&query=${debouncedSearchTerm}&page=${page}&include_adult=true`
         );
         const data: SearchResult = await response.json();
         setSearchResults(data.results);
@@ -59,7 +64,7 @@ function SearchMenu() {
     } else {
       setSearchResults([]);
     }
-  }, [debouncedSearchTerm, page, language]);
+  }, [debouncedSearchTerm, page, local]);
 
   // This function is called when the user scrolls the movie list.
   // It checks if the user is at the top or at the bottom of the list to display the blur effect correctly.
@@ -72,25 +77,20 @@ function SearchMenu() {
     setIsTopBlurVisible(!isAtTop);
   }
 
-  // This effect is used to scroll the movie list to the top when the search term or the language changes.
+  // This effect is used to scroll the movie list to the top when the search term or the local changes.
   useEffect(() => {
     if (movieListRef.current) {
       handleScroll({
         target: movieListRef.current,
       } as unknown as React.UIEvent<HTMLDivElement>);
     }
-  }, [searchResults, language]);
+  }, [searchResults, local]);
 
   // This function is called when the user types in the search bar.
   // It updates the search term.
   function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
     setSearchTerm(e.target.value);
   }
-
-  // If the user changes the language, we change the language of the text displayed through i18n.
-  useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language]);
 
   return (
     <div className="search-menu">
@@ -116,7 +116,7 @@ function SearchMenu() {
         {searchTerm ? (
           searchResults.map((movie) => {
             const movieOverview = (
-              <MovieOverview movie={movie} language={language} size={140} />
+              <MovieOverview movie={movie} language={local} size={140} />
             );
 
             return (
@@ -129,24 +129,18 @@ function SearchMenu() {
                 }}
               >
                 <div className="movie-item-image">
-                  <img
-                    src={MoviePosterURL({
-                      poster_path: movie?.poster_path,
-                      size: 92,
-                    })}
-                    alt={movie?.title}
-                  />
+                  <MoviePoster poster_path={movie?.poster_path} size={92} />
                 </div>
                 <div className="movie-info">
                   <h3>{movie.title}</h3>
-                  <span className="movie-others">{MovieScores({ movie })}</span>
-                  <span className="movie-info-label">{movieOverview}</span>
+                  <div className="movie-others">{MovieScores({ movie })}</div>
+                  {movieOverview}
                 </div>
               </button>
             );
           })
         ) : (
-          <SearchPrompt language={language} />
+          <SearchPrompt language={local} />
         )}
       </div>
     </div>

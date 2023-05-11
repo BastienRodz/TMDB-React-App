@@ -9,6 +9,7 @@ interface SearchPromptProps {
 }
 
 // This component displays a prompt to search for movies on the left side of the website when the user has not.
+// It takes the language as a prop to display the text in the correct language.
 function SearchPrompt({ language }: SearchPromptProps) {
   const { t } = useTranslation();
 

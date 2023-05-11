@@ -1,23 +1,23 @@
 import React from 'react';
-import './LanguageSelection.css';
-import { useLanguage } from '../../context/LanguageContext';
+import './LocalSelection.css';
+import { useLocal } from '../../contexts/LocalContext';
 import quebec from '../../assets/quebec.svg';
 
-// This component is used to select the language of the app.
-// On click on a flag, the language is changed in the context.
-function LanguageSelection() {
-  const { language, setLanguage } = useLanguage();
+// This component is used to select the local used by the app.
+// On click on a flag, the local is changed in the context and the displayed language is changed.
+function LocalSelection() {
+  const { local, setLocal } = useLocal();
 
   const handleFrenchClick = () => {
-    setLanguage('fr-FR');
+    setLocal('fr-FR');
   };
 
   const handleQuebecClick = () => {
-    setLanguage('fr-CA');
+    setLocal('fr-CA');
   };
 
   const handleEnglishClick = () => {
-    setLanguage('en-US');
+    setLocal('en-US');
   };
 
   const handleKeyDown = (event: React.KeyboardEvent, callback: () => void) => {
@@ -30,7 +30,7 @@ function LanguageSelection() {
     <div className="language-selection">
       <div
         className={`language-selection-flag ${
-          language === 'fr-FR' ? 'selected' : ''
+          local === 'fr-FR' ? 'selected' : ''
         }`}
         role="button"
         tabIndex={0}
@@ -41,7 +41,7 @@ function LanguageSelection() {
       </div>
       <div
         className={`language-selection-flag ${
-          language === 'fr-CA' ? 'selected' : ''
+          local === 'fr-CA' ? 'selected' : ''
         }`}
         role="button"
         tabIndex={0}
@@ -52,7 +52,7 @@ function LanguageSelection() {
       </div>
       <div
         className={`language-selection-flag ${
-          language === 'en-US' ? 'selected' : ''
+          local === 'en-US' ? 'selected' : ''
         }`}
         role="button"
         tabIndex={0}
@@ -65,4 +65,4 @@ function LanguageSelection() {
   );
 }
 
-export default LanguageSelection;
+export default LocalSelection;

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { detailedMovie } from '../../types.d';
 import i18n from '../../utils/i18n';
-import { LanguageContext } from '../../context/LanguageContext';
+import { LocalContext } from '../../contexts/LocalContext';
 
 interface MovieTrailerProps {
   movie: detailedMovie | undefined;
@@ -12,19 +12,19 @@ interface MovieTrailerProps {
 function MovieTrailer({ movie }: MovieTrailerProps) {
   const [trailerURL, setTrailerURL] = useState<string | null>(null);
   const { t } = useTranslation();
-  const { language } = useContext(LanguageContext);
+  const { local } = useContext(LocalContext);
 
-  // Fetch the trailer of the movie, using the selected language and the selected movie ID.
+  // Fetch the trailer of the movie, using the selected local and the selected movie ID.
   // If the selected movie is undefined, we don't fetch anything.
-  // If language or selectedMovie change, we fetch again.
+  // If local or selectedMovie change, we fetch again.
   useEffect(() => {
     const getTrailer = async (movieToCheck: detailedMovie | undefined) => {
       if (!movieToCheck) return;
       const { id } = movieToCheck;
 
-      // First, try to fetch the trailer in the user-selected language
+      // First, try to fetch the trailer in the user-selected local.
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=${local}`
       );
       const data = await response.json();
 
@@ -36,7 +36,7 @@ function MovieTrailer({ movie }: MovieTrailerProps) {
         );
       }
 
-      // If no trailer is found in the user-selected language, try the original language of the movie.
+      // If no trailer is found in the user-selected local, we try the original language of the movie.
       if (!trailer) {
         const originalResponse = await fetch(
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=${movieToCheck.original_language}`
@@ -52,24 +52,33 @@ function MovieTrailer({ movie }: MovieTrailerProps) {
 
       // If a trailer is found, set the trailer URL
       if (trailer) {
-        setTrailerURL(`https://www.youtube.com/embed/${trailer.key}`);
+        setTrailerURL(
+          `https://www.youtube-nocookie.com/embed/${trailer.key}?rel=0&origin=http://localhost:3000`
+        );
       } else {
         setTrailerURL(null);
       }
     };
 
     getTrailer(movie);
-  }, [movie, language]);
+  }, [movie, local]);
 
   // If the user changes the language, we change the language of the text displayed through i18n.
   useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language]);
+    i18n.changeLanguage(local);
+  }, [local]);
 
   return (
     <div className="trailer">
       {trailerURL ? (
-        <iframe title="trailer" width="100%" height="100%" src={trailerURL} />
+        <iframe
+          title="trailer"
+          width="100%"
+          height="100%"
+          src={trailerURL}
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       ) : (
         <p>{t('trailer.unavailable')}</p>
       )}

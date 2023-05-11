@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import ConfigProvider from './context/ConfigApiContext';
-import MovieProvider from './context/MovieContext';
-import LanguageProvider from './context/LanguageContext';
+import ConfigProvider from './contexts/ConfigApiContext';
+import MovieProvider from './contexts/MovieContext';
+import LanguageProvider from './contexts/LocalContext';
 import './index.css';
 import './utils/i18n';
 import App from './App';

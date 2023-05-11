@@ -37,7 +37,7 @@ msgid "trailer.unavailable"
 msgstr "No trailer available..."
 
 msgid "default.welcome_title"
-msgstr "Welcome to Fresh Tomatoe!"
+msgstr "Welcome to Fresh Tomatoes!"
 
 msgid "default.welcome_message"
 msgstr "To get started, search for a movie using the search bar on the left."

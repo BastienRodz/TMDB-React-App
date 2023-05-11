@@ -1,17 +1,18 @@
 import { useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageContext } from '../../context/LanguageContext';
+import { LocalContext } from '../../contexts/LocalContext';
 import i18n from '../../utils/i18n';
 import './DefaultPage.css';
 
 // This component displays the default page on the right side of the website.
+// It access the context to get the local and display the text in the correct language.
 function DefaultPage() {
-  const { language } = useContext(LanguageContext);
+  const { local } = useContext(LocalContext);
   const { t } = useTranslation();
 
   useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language]);
+    i18n.changeLanguage(local);
+  }, [local]);
 
   return (
     <div className="default-page">
