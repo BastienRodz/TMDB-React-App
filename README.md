@@ -4,8 +4,8 @@ TheMovieDB React App is a web application that allows users to search for movies
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
 - [Features](#features)
+- [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Production Mode](#production-mode)
@@ -14,6 +14,15 @@ TheMovieDB React App is a web application that allows users to search for movies
 - [WIP](#wip-work-in-progress)
 - [Area for Improvement](#area-for-improvement)
 - [License](#license)
+
+## Features
+
+- Search for movies using keywords
+- View movie details, including runtime, genre, status, and overview
+- Watch movie trailers
+- View movie posters.
+- Switch languages for movie details and interface
+- Responsive design for mobile and desktop devices
 
 ## Prerequisites
 Ensure that you have the following installed on your local machine:
@@ -27,15 +36,6 @@ You can check the versions by running:
 node -v
 npm -v
 ```
-
-## Features
-
-- Search for movies using keywords
-- View movie details, including runtime, genre, status, and overview
-- Watch movie trailers
-- View movie posters.
-- Switch languages for movie details and interface
-- Responsive design for mobile and desktop devices
 
 ## Installation
 
