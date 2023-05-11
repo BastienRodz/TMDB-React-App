@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# TheMovieDB React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TheMovieDB React App is a web application that allows users to search for movies and view detailed information about them. The application uses the MovieDB API to fetch movie data, including movie posters, trailers, and other relevant information. The app is designed to be user-friendly, responsive, and accessible on various devices.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies](#technologies)
+- [Testing](#testing)
+- [License](#license)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Search for movies using keywords
+- View movie details, including runtime, genre, status, and overview
+- Watch movie trailers
+- View movie posters and other images
+- Switch languages for movie details and interface
+- Responsive design for mobile and desktop devices
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To set up the Fresh Tomatoes application on your local machine, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+    git clone https://github.com/barodrig/tmdb-react-app.git
+2. Navigate to the project directory:
+    cd tmdb-react-app
+3. Install the required dependencies:
+    npm install
+4. Create a `.env` file in the root of the project directory with the following content (replace `YOUR_API_KEY` with your own API key from The MovieDB):
+    REACT_APP_API_KEY=YOUR_API_KEY
+5. Start the development server:
+    npm start
+The application will be available at `http://localhost:3000/`.
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Use the search bar to enter keywords and find movies that match your query.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Click on a movie to view its details, including runtime, genre, status, and overview.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Watch movie trailers directly within the application.
 
-### `npm run eject`
+4. Switch between different languages to view movie details and interface in your preferred language.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+5. Enjoy a responsive design that works well on both mobile and desktop devices.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React
+- TypeScript
+- The MovieDB API
+- I18N
+- CSS Modules
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Testing
 
-## Learn More
+To run tests for the Fresh Tomatoes application, follow these steps:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Navigate to the project directory:
+cd tmdb-react-app
+2. Run the test suite:
+  npm test
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+---
+
+If you have any questions or suggestions, feel free to create an issue or submit a pull request.
