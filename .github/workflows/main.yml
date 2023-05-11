@@ -12,7 +12,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run build:production
+          build: npm run build:actions
           start: npm start
         env:
           REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
