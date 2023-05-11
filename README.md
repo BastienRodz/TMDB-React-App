@@ -7,6 +7,7 @@ TheMovieDB React App is a web application that allows users to search for movies
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Production Mode](#production-mode)
 - [Technologies](#technologies)
 - [Testing](#testing)
 - [License](#license)
@@ -80,6 +81,24 @@ The application will be available at `http://localhost:3000/`.
 4. Switch between different languages to view movie details and interface in your preferred language.
 
 5. Enjoy a responsive design that works well on both mobile and desktop devices.
+
+## Production Mode
+
+
+1. Build the application: 
+
+```bash
+npm run build:production
+```
+
+2. Serve the application: 
+```bash
+`serve -s build`
+```
+
+The application will be running at `http://localhost:5000`
+*If you encounter an issue, ensure that you have created and populated your ```.env``` file and installed dependencies with ```npm install```.
+Refer to [Usage](#usage).*
 
 ## Technologies
 
