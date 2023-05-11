@@ -29,6 +29,7 @@ function LocalSelection() {
   return (
     <div className="language-selection">
       <div
+        data-testid="fr_FR"
         className={`language-selection-flag ${
           local === 'fr-FR' ? 'selected' : ''
         }`}
@@ -40,6 +41,7 @@ function LocalSelection() {
         🇫🇷
       </div>
       <div
+        data-testid="fr_CA"
         className={`language-selection-flag ${
           local === 'fr-CA' ? 'selected' : ''
         }`}
@@ -51,6 +53,7 @@ function LocalSelection() {
         <img src={quebec} alt="Quebec" style={{ width: '70%' }} />
       </div>
       <div
+        data-testid="en_US"
         className={`language-selection-flag ${
           local === 'en-US' ? 'selected' : ''
         }`}
