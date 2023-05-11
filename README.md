@@ -30,7 +30,7 @@ To set up the Fresh Tomatoes application on your local machine, follow these ste
 
 1. Clone the repository:
 
-```[git clone https://github.com/barodrig/tmdb-react-app.git](https://github.com/BastienRodz/TMDB-React-App.git)```
+```git clone https://github.com/barodrig/tmdb-react-app.git```
 
 2. Navigate to the project directory:
 
