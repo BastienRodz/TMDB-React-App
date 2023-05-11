@@ -16,10 +16,14 @@ TheMovieDB React App is a web application that allows users to search for movies
 - Search for movies using keywords
 - View movie details, including runtime, genre, status, and overview
 - Watch movie trailers
-- View movie posters and other images
+- View movie posters.
 - Switch languages for movie details and interface
 - Responsive design for mobile and desktop devices
 
+## Features to come
+- Browse movies using filter (popularity, genre, adult content filter...)
+- Rate movies through TheMovieDB guest session (no need to authenticate yourself to TMDB).
+- Night mode.
 ## Installation
 
 To set up the Fresh Tomatoes application on your local machine, follow these steps:
@@ -65,10 +69,11 @@ The application will be available at `http://localhost:3000/`.
 - The MovieDB API
 - I18N
 - CSS Modules
+- Cypress
 
 ## Testing
 
-To run tests for the Fresh Tomatoes application, follow these steps:
+To run tests for TheMovieDB-React-App, follow these steps:
 
 1. Navigate to the project directory:
 
