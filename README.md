@@ -61,9 +61,9 @@ The application will be available at `http://localhost:3000/`.
 To run tests for the Fresh Tomatoes application, follow these steps:
 
 1. Navigate to the project directory:
-cd tmdb-react-app
+    cd tmdb-react-app
 2. Run the test suite:
-  npm test
+    npm test
 
 
 ## License
