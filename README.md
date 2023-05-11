@@ -4,12 +4,15 @@ TheMovieDB React App is a web application that allows users to search for movies
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Production Mode](#production-mode)
 - [Technologies](#technologies)
 - [Testing](#testing)
+- [WIP](#wip-work-in-progress)
+- [Area for Improvement](#area-for-improvement)
 - [License](#license)
 
 ## Prerequisites
@@ -125,7 +128,7 @@ cd TMDB-React-App
 npm run test
 ```
 
-## Features to come
+## WIP (Work In Progress)
 - Implement movie browsing using filters such as popularity, genre, and adult content filter.
 - Enable users to rate movies through The MovieDB guest session.
 - Introduce a night mode for a more comfortable user experience in low-light environments.
