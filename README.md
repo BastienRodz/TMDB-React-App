@@ -34,7 +34,7 @@ To set up the Fresh Tomatoes application on your local machine, follow these ste
 
 2. Navigate to the project directory:
 
-```cd tmdb-react-app```
+```cd TMDB-React-App```
 
 3. Install the required dependencies:
 
@@ -77,7 +77,7 @@ To run tests for TheMovieDB-React-App, follow these steps:
 
 1. Navigate to the project directory:
 
-```cd tmdb-react-app```
+```cd TMDB-React-App```
 
 2. Run the test suite:
 
