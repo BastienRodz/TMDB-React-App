@@ -11,6 +11,19 @@ TheMovieDB React App is a web application that allows users to search for movies
 - [Testing](#testing)
 - [License](#license)
 
+## Prerequisites
+Ensure that you have the following installed on your local machine:
+
+- Node.js (v14 or newer)
+- npm (v6 or newer)
+
+You can check the versions by running:
+
+```bash
+node -v
+npm -v
+```
+
 ## Features
 
 - Search for movies using keywords
@@ -20,33 +33,39 @@ TheMovieDB React App is a web application that allows users to search for movies
 - Switch languages for movie details and interface
 - Responsive design for mobile and desktop devices
 
-## Features to come
-- Browse movies using filter (popularity, genre, adult content filter...)
-- Rate movies through TheMovieDB guest session (no need to authenticate yourself to TMDB).
-- Night mode.
 ## Installation
 
 To set up the Fresh Tomatoes application on your local machine, follow these steps:
 
 1. Clone the repository:
 
-```git clone https://github.com/barodrig/tmdb-react-app.git```
+```bash
+git clone https://github.com/barodrig/tmdb-react-app.git
+```
 
 2. Navigate to the project directory:
 
-```cd TMDB-React-App```
+```bash
+cd TMDB-React-App
+```
 
 3. Install the required dependencies:
 
-```npm install```
+```bash
+npm install
+```
 
 4. Create a `.env` file in the root of the project directory with the following content (replace `YOUR_API_KEY` with your own API key from The MovieDB):
 
-```REACT_APP_API_KEY=YOUR_API_KEY```
+```bash
+REACT_APP_API_KEY=YOUR_API_KEY
+```
 
 5. Start the development server:
 
-```npm start```
+```bash
+npm start
+```
 
 The application will be available at `http://localhost:3000/`.
 
@@ -77,12 +96,27 @@ To run tests for TheMovieDB-React-App, follow these steps:
 
 1. Navigate to the project directory:
 
-```cd TMDB-React-App```
+```bash
+cd TMDB-React-App
+```
 
-2. Run the test suite:
+2. Run the cypress E2E tests :
 
-```npm test```
+```bash
+npm run test
+```
 
+## Features to come
+- Implement movie browsing using filters such as popularity, genre, and adult content filter.
+- Enable users to rate movies through The MovieDB guest session.
+- Introduce a night mode for a more comfortable user experience in low-light environments.
+
+## Area for Improvement
+- **Unit tests:** The application currently lacks unit tests. Incorporating these tests will ensure each part of the application works as intended independently.
+- **End-to-End tests:** While some E2E tests have been implemented using Cypress, the coverage could be more comprehensive to ensure the application works as expected in a real-world scenario.
+- **API call optimization:** Enhancing the optimization of API calls can improve the application's performance and responsiveness.
+- **Responsive Design:** Further enhancements in the responsive design can provide an improved user experience across various device sizes.
+- **CSS modules:** The current application uses CSS modules for styling. Consider replacing these with styled components for better styling encapsulation and ease of maintenance.
 
 ## License
 

@@ -20,7 +20,7 @@
     "start": "npm run convert:translations && env-cmd -f .env react-scripts start",
     "build:staging": "npm run convert:translations && env-cmd -f .env react-scripts build",
     "build:production": "npm run convert:translations && env-cmd -f .env react-scripts build",
-    "test": "react-scripts test",
+    "test": "cypress run",
     "cypress:open": "cypress open",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix src",
