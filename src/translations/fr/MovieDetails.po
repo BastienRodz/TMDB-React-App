@@ -37,7 +37,7 @@ msgid "trailer.unavailable"
 msgstr "Aucune bande annonce disponible..."
 
 msgid "default.welcome_title"
-msgstr "Bienvenue sur Fresh Tomatos !"
+msgstr "Bienvenue sur Fresh Tomatoes !"
 
 msgid "default.welcome_message"
 msgstr "Pour commencer, recherchez un film en utilisant la barre de recherche sur la gauche."
