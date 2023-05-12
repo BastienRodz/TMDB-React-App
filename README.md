@@ -139,6 +139,7 @@ npm run test
 - **API call optimization:** Enhancing the optimization of API calls can improve the application's performance and responsiveness.
 - **Responsive Design:** Further enhancements in the responsive design can provide an improved user experience across various device sizes.
 - **CSS modules:** The current application uses CSS modules for styling. Consider replacing these with styled components for better styling encapsulation and ease of maintenance.
+- **Cookies management:** Even when operating in no-cookie mode, YouTube still collects cookies related to your viewing behavior. Therefore, we need to obtain your consent before allowing you to watch movie trailer.
 
 ## License
 
